@@ -5,14 +5,14 @@ echo Parsing log files
 
 echo Aggregating results into result files
 echo -n > results-28nodes.dat
-./bin/aggregate hadoop >> results-28nodes.dat 2>/dev/null
+./bin/aggregate hadoop-28nodes >> results-28nodes.dat 2>/dev/null
 ./bin/aggregate notcontrolled-nocombiner-28nodes >> results-28nodes.dat 2>/dev/null
 ./bin/aggregate controlled-nocombiner-28nodes >> results-28nodes.dat 2>/dev/null
 ./bin/aggregate notcontrolled-combiner-28nodes >> results-28nodes.dat 2>/dev/null
 ./bin/aggregate controlled-combiner-28nodes >> results-28nodes.dat 2>/dev/null
 
 echo -n > results-28nodes-iter1.dat
-./bin/aggregate hadoop 2>> results-28nodes-iter1.dat >/dev/null
+./bin/aggregate hadoop-28nodes 2>> results-28nodes-iter1.dat >/dev/null
 ./bin/aggregate notcontrolled-nocombiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
 ./bin/aggregate controlled-nocombiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
 ./bin/aggregate notcontrolled-combiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
