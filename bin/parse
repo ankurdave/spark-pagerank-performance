@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for file in *28nodes-?
+shopt -s extglob
+
+for file in *28nodes-+([0-9])
 do
     grep 'Job finished in' $file | head -n 3 | awk '{s+=$8} END {print "0 " s}' > $file.dat
     grep took $file | awk '{print $2 " " $4}' | tail -n +2 >> $file.dat
