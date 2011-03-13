@@ -1,0 +1,9 @@
+#!/usr/bin/perl -w
+
+use Statistics::Descriptive;
+
+$stat = Statistics::Descriptive::Full->new();
+@data = <>;
+$stat->add_data(@data);
+
+print $stat->mean() . " " . $stat->standard_deviation() . "\n";

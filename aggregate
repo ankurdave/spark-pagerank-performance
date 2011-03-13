@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -n $1
+tail -n +2 $1-?.dat | awk '{print $2}' | ./stats
