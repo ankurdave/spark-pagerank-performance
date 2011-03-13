@@ -1,5 +1,5 @@
 hadoop-28nodes 170.75 6.83036208072794
 notcontrolled-nocombiner-28nodes 89.58 24.6179708708073
-controlled-nocombiner-28nodes 97.7906976744186 52.6789730074601
+controlled-nocombiner-28nodes 96.0634920634921 51.3438355805732
 notcontrolled-combiner-28nodes 52.825 5.58793342837939
 controlled-combiner-28nodes 43.66 3.36008989189768
