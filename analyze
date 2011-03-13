@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -n > results-28nodes.dat
+./aggregate hadoop >> results-28nodes.dat
+./aggregate notcontrolled-nocombiner-28nodes >> results-28nodes.dat
+./aggregate controlled-nocombiner-28nodes >> results-28nodes.dat
+./aggregate notcontrolled-combiner-28nodes >> results-28nodes.dat
+./aggregate controlled-combiner-28nodes >> results-28nodes.dat

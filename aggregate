@@ -1,4 +1,7 @@
 #!/bin/bash
 
-echo -n $1
-tail -n +2 $1-?.dat | awk '{print $2}' | ./stats
+for seed in $@
+do
+    echo -n "$seed "
+    tail -n +2 -q $seed-?.dat | awk '{print $2}' | ./stats
+done
