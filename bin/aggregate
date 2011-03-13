@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for seed in $@
+do
+    echo -n "$seed "
+    tail -n +2 -q $seed-?.dat | awk '{print $2}' | $(dirname $0)/stats
+
+    echo -n "$seed " >&2
+    (head -n 1 -q $seed-?.dat | awk '{print $2}' | $(dirname $0)/stats) >&2
+done

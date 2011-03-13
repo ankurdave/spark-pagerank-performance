@@ -6,6 +6,5 @@ set xtics rotate
 set style data histogram
 set style histogram errorbars lw 2
 set yrange [0:]
-unset key
 
-plot "results-28nodes.dat" using 2:3:xtic(1)
+plot "results-28nodes.dat" using 2:3:xtic(1) title "iterations", "results-28nodes-iter1.dat" using 2:3 title "initialization"
