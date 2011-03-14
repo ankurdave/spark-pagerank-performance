@@ -1,24 +1,24 @@
 #!/bin/bash
 
 echo Parsing log files
-./bin/parse
+./bin/parse $1
 
 echo Aggregating results into result files
-echo -n > results-28nodes.dat
-./bin/aggregate hadoop-28nodes >> results-28nodes.dat 2>/dev/null
-./bin/aggregate notcontrolled-nocombiner-28nodes >> results-28nodes.dat 2>/dev/null
-./bin/aggregate controlled-nocombiner-28nodes >> results-28nodes.dat 2>/dev/null
-./bin/aggregate notcontrolled-combiner-28nodes >> results-28nodes.dat 2>/dev/null
-./bin/aggregate controlled-combiner-28nodes >> results-28nodes.dat 2>/dev/null
+echo -n > results-$1.dat
+./bin/aggregate hadoop-$1 >> results-$1.dat 2>/dev/null
+./bin/aggregate notcontrolled-nocombiner-$1 >> results-$1.dat 2>/dev/null
+./bin/aggregate controlled-nocombiner-$1 >> results-$1.dat 2>/dev/null
+./bin/aggregate notcontrolled-combiner-$1 >> results-$1.dat 2>/dev/null
+./bin/aggregate controlled-combiner-$1 >> results-$1.dat 2>/dev/null
 
-echo -n > results-28nodes-iter1.dat
-./bin/aggregate hadoop-28nodes 2>> results-28nodes-iter1.dat >/dev/null
-./bin/aggregate notcontrolled-nocombiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
-./bin/aggregate controlled-nocombiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
-./bin/aggregate notcontrolled-combiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
-./bin/aggregate controlled-combiner-28nodes 2>> results-28nodes-iter1.dat >/dev/null
+echo -n > results-$1-iter1.dat
+./bin/aggregate hadoop-$1 2>> results-$1-iter1.dat >/dev/null
+./bin/aggregate notcontrolled-nocombiner-$1 2>> results-$1-iter1.dat >/dev/null
+./bin/aggregate controlled-nocombiner-$1 2>> results-$1-iter1.dat >/dev/null
+./bin/aggregate notcontrolled-combiner-$1 2>> results-$1-iter1.dat >/dev/null
+./bin/aggregate controlled-combiner-$1 2>> results-$1-iter1.dat >/dev/null
 
 echo Plotting results
-./bin/compare.plt
+./bin/compare $1
 
-echo Done! See results in results-28nodes.pdf.
+echo Done! See results in results-$1.pdf.

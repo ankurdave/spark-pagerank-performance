@@ -1,0 +1,5 @@
+hadoop-60nodes 133 2.3094010767585
+notcontrolled-nocombiner-60nodes 77.4711 6.28915878953627
+controlled-nocombiner-60nodes 77.7700666666667 2.81599807232382
+notcontrolled-combiner-60nodes 84.2928333333333 6.18695798299412
+controlled-combiner-60nodes 77.52005 10.0804435619173
