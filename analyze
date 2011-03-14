@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ "$1" == "" ]]
+then
+    echo 'Usage: analyze <numnodes>'
+    exit -1
+fi
+
 echo Parsing log files
 ./bin/parse $1
 
