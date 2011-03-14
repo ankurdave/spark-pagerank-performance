@@ -1,0 +1,19 @@
+#!/usr/bin/perl
+
+while (<>) {
+    push @lines, $_;
+    if (/took/) {
+        do {
+            $a = pop @lines;
+        } until (@lines == 0 || $a =~ /Finished TID (\d+)/);
+        next if (@lines == 0);
+        $tid = $1;
+        do {
+            $b = pop @lines;
+        } until ($b =~ /TID $tid on slave [\d-]+: ([a-zA-Z0-9.-]+)/);
+        push @strag, $1;
+        @lines = ();
+    }
+}
+
+print join("\n", @strag) . "\n";
