@@ -1,0 +1,43 @@
+#!/bin/bash
+
+JOB_WAIT_TIME=700
+
+wait_and_kill() {
+    lastpid=$!
+    sleep $JOB_WAIT_TIME
+    kill $lastpid
+    echo "Killed $lastpid."
+}
+
+cleanup() {
+    echo "Cleaning up..."
+    time /root/ephemeral-hdfs/bin/slaves.sh /root/cleanup
+}
+
+do_trial() {
+    echo "Running experiment $1/$2 trial $3 (combiner? $4). Output file: ~/$1/$2-$3"
+    pushd $1
+    if [[ "$4" = "yes" ]]; then
+	echo "Using combiner."
+	((./run bagel.WikipediaPageRank hdfs://`hostname`:9000/user/root/wiki-49gb.tsv 0.0001 600 1@`hostname`:5050 2>&1) > $2-$3) &
+    else
+	echo "Not using combiner."
+	((./run bagel.WikipediaPageRank hdfs://`hostname`:9000/user/root/wiki-49gb.tsv 0.0001 600 1@`hostname`:5050 noCombiner 2>&1) > $2-$3) &
+    fi
+    popd
+    wait_and_kill
+    cleanup
+}
+
+cleanup
+
+for i in $(seq 1 4)
+do
+  echo "Starting trial $i."
+  do_trial pregel-spark notcontrolled-nocombiner-60nodes $i
+  do_trial pregel-spark notcontrolled-combiner-60nodes $i yes
+  do_trial pregel2 controlled-nocombiner-60nodes $i
+  do_trial pregel2 controlled-combiner-60nodes $i yes
+done
+
+wait
